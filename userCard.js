@@ -3,15 +3,16 @@ template.innerHTML = `
 
 <style>
     .user-card{
+        margin: 10px;
         width: 500px;
         display: flex;
         flex-direction: raw;
         border: 1px solid gray;
         border-radius: 5px
     }
-    h3{
+    h2{
         color: gray;
-        padding: 0px 10px;
+        padding: 5px 10px 0px 10px;
         margin: 0px;
     }
     .user-card img{
@@ -21,14 +22,17 @@ template.innerHTML = `
     .info{
         padding: 0px 15px;
     }
+    .info p{
+        margin: 10px 0px;
+    }
     .user-card-details{
         flex: 8;
     }
 </style>
 <div class="user-card">
-        <img src="https://randomuser.me/api/portraits/men/1.jpg">
+        <img>
     <div class="user-card-details">
-        <h3>Name : Ismaiel Altahan</h3>
+        <h2></h2>
             <div class="info">
                 <p>Email : Ismaiel.altahan@gmail.com</p>
                 <p>Phone : 01634554691</p>
@@ -46,6 +50,9 @@ class UserCard extends HTMLElement {
 
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+    this.shadowRoot.querySelector('h2').innerText = this.getAttribute('name');
+    this.shadowRoot.querySelector('img').src = this.getAttribute('profileImg');
   }
 }
 
