@@ -26,7 +26,7 @@ template.innerHTML = `
         margin: 10px 0px;
     }
     .user-card-details{
-        flex: 8;
+        flex: 7;
     }
 </style>
 <div class="user-card">
@@ -34,8 +34,8 @@ template.innerHTML = `
     <div class="user-card-details">
         <h2></h2>
             <div class="info">
-                <p>Email : Ismaiel.altahan@gmail.com</p>
-                <p>Phone : 01634554691</p>
+                <p>Email : <slot name="email"></p>
+                <p>Phone : <slot name="phone"></p>
                 <button>Hide info </button>
 
             </div>
