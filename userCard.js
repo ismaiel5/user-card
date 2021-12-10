@@ -25,6 +25,14 @@ template.innerHTML = `
         flex: 7;
         padding: 0px 15px;
     }
+
+    #toggle-info{
+        background-color: #008CBA;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        color: white;
+    }
 </style>
 <div class="user-card">
         <img>
@@ -63,9 +71,11 @@ class UserCard extends HTMLElement {
     if (this.toggleBtn) {
         info.style.display = "block";
         toggleInfo.innerText = 'Hide Info';
+        toggleInfo.style.backgroundColor = "#008CBA"; 
     } else {
         info.style.display = "none";
         toggleInfo.innerText ='Show Info';
+        toggleInfo.style.backgroundColor = "#f44336"; 
     }
   }
 
