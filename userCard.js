@@ -1,6 +1,5 @@
 const template = document.createElement("template");
 template.innerHTML = `
-
 <style>
     .user-card{
         margin: 10px;
@@ -19,14 +18,12 @@ template.innerHTML = `
         width: 100%;
         flex: 3;
     }
-    .info{
-        padding: 0px 15px;
-    }
     .info p{
         margin: 10px 0px;
     }
     .user-card-details{
         flex: 7;
+        padding: 0px 15px;
     }
 </style>
 <div class="user-card">
@@ -36,9 +33,8 @@ template.innerHTML = `
             <div class="info">
                 <p>Email : <slot name="email"></p>
                 <p>Phone : <slot name="phone"></p>
-                <button>Hide info </button>
-
             </div>
+            <button id="toggle-info"></button>
     </div>
 
 </div>
@@ -47,12 +43,34 @@ template.innerHTML = `
 class UserCard extends HTMLElement {
   constructor() {
     super();
+    this.toggleBtn = true;
+
 
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
     this.shadowRoot.querySelector('h2').innerText = this.getAttribute('name');
     this.shadowRoot.querySelector('img').src = this.getAttribute('profileImg');
+    this.shadowRoot.querySelector('#toggle-info').innerText = 'Hide Info';
+
+  }
+
+  toggleInfo(){
+    this.toggleBtn = !this.toggleBtn;
+    const toggleInfo = this.shadowRoot.querySelector('#toggle-info');
+    const info = this.shadowRoot.querySelector('.info');
+
+    if (this.toggleBtn) {
+        info.style.display = "block";
+        toggleInfo.innerText = 'Hide Info';
+    } else {
+        info.style.display = "none";
+        toggleInfo.innerText ='Show Info';
+    }
+  }
+
+  connectedCallback(){
+      this.shadowRoot.querySelector('#toggle-info').addEventListener('click', ()=> this.toggleInfo());
   }
 }
 
