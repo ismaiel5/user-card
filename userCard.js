@@ -32,6 +32,7 @@ template.innerHTML = `
         border-radius: 5px;
         padding: 10px;
         color: white;
+        cursor: pointer;
     }
 </style>
 <div class="user-card">
@@ -52,7 +53,6 @@ class UserCard extends HTMLElement {
   constructor() {
     super();
     this.toggleBtn = true;
-
 
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
